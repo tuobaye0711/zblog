@@ -172,6 +172,8 @@ Promise一旦状态置为完成态，便为其回调(.then内的函数)安排一
 
 ### 3. 总结和参考资料
 
+***
+
 microtask和macrotask看起来很容易混淆，实际上还剩容易区分的。macrotask就是我们常说的任务队列(task queue)。
 
 JavaScript执行顺序可以简要总结如下：

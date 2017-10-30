@@ -174,7 +174,7 @@ Promise一旦状态置为完成态，便为其回调(.then内的函数)安排一
 
 ***
 
-microtask和macrotask看起来很容易混淆，实际上还剩容易区分的。macrotask就是我们常说的任务队列(task queue)。
+microtask和macrotask看起来容易混淆，实际上还是很好区分的。macrotask就是我们常说的任务队列(task queue)。
 
 JavaScript执行顺序可以简要总结如下：
 
@@ -190,3 +190,4 @@ JavaScript执行顺序可以简要总结如下：
 [知乎-Promise的队列与setTimeout的队列有何关联？](https://www.zhihu.com/question/36972010)
 [stack overflow-Difference between microtask and macrotask within an event loop context
 ](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
+[阮一峰-JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)

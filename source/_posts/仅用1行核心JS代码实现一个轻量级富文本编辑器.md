@@ -6,6 +6,8 @@ tags: JavaScript
 
 ## 引子
 
+***
+
 富文本编辑器是我们在生活中非常常用到的编辑工具，现在有很多功能完备且强大的编辑器，比如[Quill Rich Text Editor](https://github.com/quilljs/quill)、[ueditor](http://ueditor.baidu.com/website/)等，都是很优秀的富文本编辑器。甚至说我们每个人都会用到的word，才是最优秀、国民度最高的富文本编辑器。
 
 今天我们要实现一个轻量级的编辑器，主要利用的是[document.execCommand](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand)。
@@ -44,6 +46,8 @@ tags: JavaScript
 
 ## 实现
 
+***
+
 说到编辑器，最基本的会分为上下两部分
 > - 上部分为控制区域，用于对文本进行各种控制修改
 > - 下部分为文本区域，用于输入和展示文本的样式
@@ -57,4 +61,37 @@ tags: JavaScript
 </div>
 {% endcodeblock %}
 
-注意，既然文本区域要可编辑，要加上contenteditable属性，这样就可以自如的在文本区域输入文字了。
+注意，既然文本区域要可编辑，要加上contenteditable属性，这样就可以自如的在文本区域输入文字了。OK,编辑器雏形已经出来了~
+
+接下来要对两部分分别进行操作，在控制区域，应该就是各种按钮。参考document.execCommand的语法：
+![document.execCommand](execCommand.png)
+
+主要控制到样式的有两个api：aCommandName和aValueArgument。同时，命令名aCommandName每条execCommand都会有，aCommandName和aValueArgument。因此我们需要在每个按钮上传递两个变量。第一个是必填项aCommandName，第二个是选填项aValueArgument。我们考虑采用HTML5的新属性data-*传递这两个参数:
+{% codeblock lang:html %}
+    <!--调整为斜体-->
+    <a href="#" data-command='italic' onclick="changeStyle(this.dataset)">斜体</a>
+    <!--调整字号为1号-->
+    <a href="#" data-command='fontSize' data-value="1" onclick="changeStyle(this.dataset)">1号</a>
+{% endcodeblock %}
+
+上面是两个基本按钮示例，一个是不传参的，一个是传参的，然后在js端做一个判断即可实现功能：
+
+{% codeblock lang:javascript %}
+    const changeStyle = (data) => {
+        //一行核心代码即可实现基本编辑器功能
+        data.value? document.execCommand(data.command, false, data.value):document.execCommand(data.command, false, null)
+    }
+{% endcodeblock %}
+
+是不是很简单呢？
+
+最后，只有两个按钮肯定是不够的，我们要把按钮数和编辑器的功能扩充丰富起来。我们就按照第一节整理的决定要实现的功能列表列出来的功能，按照分类，一一来实现。最后，再把按钮和文本区域的样式美化一下，即可实现我们这个轻量级富文本编辑器啦~
+
+这是我们的预览图：
+![zEditor](zEditor.png)
+
+大家可以访问[我的博客](http://tuobaye.com/demo/zEditor/index)尝试一下这个小小富文本编辑器，也希望能去我的[github项目](https://github.com/tuobaye0711/zEditor)上点颗star,谢谢啦~
+
+顺道贴一个codepen的预览，有些网络可能加载不出来...
+<p data-height="744" data-theme-id="dark" data-slug-hash="LOZRaL" data-default-tab="html,result" data-user="tuobaye0711" data-embed-version="2" data-pen-title="zEditor" class="codepen">See the Pen <a href="https://codepen.io/tuobaye0711/pen/LOZRaL/">zEditor</a> by zhleven (<a href="https://codepen.io/tuobaye0711">@tuobaye0711</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

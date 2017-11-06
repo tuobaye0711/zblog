@@ -95,3 +95,11 @@ tags: JavaScript
 顺道贴一个codepen的预览，有些网络可能加载不出来...
 <p data-height="744" data-theme-id="dark" data-slug-hash="LOZRaL" data-default-tab="html,result" data-user="tuobaye0711" data-embed-version="2" data-pen-title="zEditor" class="codepen">See the Pen <a href="https://codepen.io/tuobaye0711/pen/LOZRaL/">zEditor</a> by zhleven (<a href="https://codepen.io/tuobaye0711">@tuobaye0711</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+## 结语
+
+***
+
+实际上，我们这个富文本编辑器是一种最最简单的实现，仅仅是对contentEditable和document.execCommand进行了一层封装，所有的样式实现都是调用的这同一条api。
+
+在当前流行的真正功能强大的富文本编辑器中，基本都是实现了自己的contentEditable，抛弃了对浏览器原生的contentEditable特性的依赖。大家都说富文本编辑器是个天坑，事实也正是如此，原生的document.execCommand实现的功能太少，BUG太多，如果使用自己写的功能来编辑文字，又会破坏contentEditable的undo/redo栈。总之，contentEditable最大的特点就是样式、html语意环境跟调用页面混合在一起，非常容易出现覆盖现象，而牛逼的富文本编辑器基本上都会使用一套自己的事件监听机制来实现类似contentEditable的功能，这些东西太繁琐太复杂，不在这里的讨论范围之内了~

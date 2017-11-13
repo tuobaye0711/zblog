@@ -49,13 +49,13 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 一个简单的指令由**名称**和**参数**组成，以空格分隔，并以分号（;）结束:
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     root /data/www;
 {% endcodeblock %}
 
 一个block指令和一个简单的指令有相同的结构，但是**不是以分号结尾，而是用一系列由大括号（{和}）包围的附加指令来结束**。如果一个block指令在大括号内可以有其他的指令，它就被称为一个context（上下文，例如：events，http，server和location）:
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     http {
         server {
             #location / {
@@ -73,7 +73,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 #后面的部分是注释：
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     # 这是一段注释
 {% endcodeblock %}
 
@@ -83,7 +83,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 你需要将静态网页和文件放到一个目录（例如/data/www），将图片等文件放到另一个目录（例如/data/images），然后在nginx.conf中进行配置。这需要在*http*模块下的*server*模块内新建两个*location*模块：
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     http {
         server {
             location / {
@@ -96,11 +96,92 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
     }
 {% endcodeblock %}
 
-看起来很好理解吧~也可以直接把文件放到一块，直接配置绝对路径：
+看起来很好理解吧~也可以直接把文件放到一块，直接location配置绝对路径：
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     location / {
         root   F:\webapp\portal;
     }
 {% endcodeblock %}
 
+Nginx在未配置监听端口的情况下默认监听80端口，因此，你可以通过在本地访问 http://localhost/ 或者 http://127.0.0.1/ 来访问你的网站。
+
+怎么样？赶紧启动一下Nginx吧，你的静态网站已经可以在本地运行了！修改配置后重启Nginx的命令是：
+
+{% codeblock lang:nginx %}
+    nginx -s reload
+{% endcodeblock %}
+
+如果您的Nginx无法启动或者出现其他错误，您可以尝试在 */usr/local/nginx/logs* 或者 */var/log/nginx* 中的 *access.log* 以及 *error.log* 中查找原因
+
+### 搭建简单的代理服务器
+
+Nginx经常作为反向代理服务器来使用，这意味着Nginx服务器接收请求，将其传递给被代理服务器，从中检索响应并将其发送给客户端。
+
+> 反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。通过在网络各处放置反向代理节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。
+
+下面，我们将配置一个基本的代理服务器，它会处理本地图片文件的请求并返回其他的请求给被代理的服务器。在这个例子中，两个服务器将在一个Nginx实例上定义。
+
+首先，在nginx的配置文件中增加一个server块来定义代理服务器，其中包含以下内容：
+
+{% codeblock lang:nginx %}
+    server {
+        listen 8080;
+        root /data/up1;
+        location / {
+        }
+    }
+{% endcodeblock %}
+
+这将是一个简单的服务器，它监听8080端口。（如果不定义listen值的话，默认监听80端口）并将所有请求映射到本地文件系统上的目录/data/up1。创建这个目录并把index.html文件放进去。请注意，该root指令放置在server context中。当响应请求的 location 区块中，没有自己的 root 指令，上述的 root 指令才会被使用。
+
+接下来，使用上一节中的服务器配置并对其进行修改，使其成为代理服务器配置。在第一个location块中，设置proxy_pass 指令，并在参数中配置指定的代理服务器的协议、名称和端口号（在我们的例子中是这样 http://localhost:8080）：
+
+{% codeblock lang:nginx %}
+    server {
+        location / {
+            proxy_pass http://localhost:8080;
+        }
+        location /images/ {
+            root /data;
+        }
+    }
+{% endcodeblock %}
+
+我们将修改第二个location块，它将当前带有/images/前缀的请求映射到/data/images目录下，使其与具有典型文件扩展名的图像请求匹配。修改的location块如下所示：
+
+{% codeblock lang:nginx %}
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+{% endcodeblock %}
+
+该参数是一个正则表达式，它会匹配所有以.gif、.jpg 或者.png结尾的URI。一个正则表达式需要以~开头。匹配到的请求会被映射到/data/images目录下。
+
+当Nginx通过location去响应一个请求时，它会先检测带有前缀的location指令，兽先是检测带有**最长**前缀的 location，其次检测正则表达式。如果被正则的匹配的规则匹配成功，Nginx会选择使用该location的规则，否则，会选择之前缓存的规则。
+
+最终，一个代理服务器的配置结果如下：
+
+{% codeblock lang:nginx %}
+    server {
+        location / {
+            proxy_pass http://localhost:8080/;
+        }
+        location ~ \.(gif|jpg|png)$ {
+            root /data/images;
+        }
+    }
+{% endcodeblock %}
+
+该服务器将过滤以.gif、.jpg或者.png结尾的请求，并将它们映射到/data/images目录（通过添加URI到root指令的参数），并将所有其他请求传递给上述代理服务器。
+
+要应用新配置，请保存修改后的配置文件，并nginx -s reload一下。
+
+更多Nginx代理配置指令，尽在[ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)
+
+## 参考文献
+
+***
+
+[Nginx官方网站](https://nginx.org/)
+[Nginx官方入门文档](https://nginx.org/en/docs/beginners_guide.html)

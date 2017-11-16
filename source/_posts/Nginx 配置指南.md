@@ -2,6 +2,7 @@
 title: Nginx 配置指南
 date: 2017-11-11 10:50:50
 tags: Nginx
+description: Nginx是最初由Igor Sysoev编写的HTTP和反向代理服务器，邮件代理服务器和通用TCP/UDP代理服务器。很长时间以来，它一直在许多重负荷的俄罗斯网站上运行，包括Yandex，Mail.Ru，VK和Rambler。根据Netcraft，2017年10月，Nginx服务或代理了29.43％最繁忙的站点。下面是一些成功案例：Dropbox，Netflix，Wordpress.com，FastMail.FM。这篇文章可以帮你快速入门Nginx，了解Nginx的优势所在，并可以尝试搭建静态服务器和简单的反向代理服务器。
 ---
 
 ## 什么是Nginx？
@@ -49,13 +50,13 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 一个简单的指令由**名称**和**参数**组成，以空格分隔，并以分号（;）结束:
 
-{% codeblock lang:nginx %}
+{% codeblock lang:javascript %}
     root /data/www;
 {% endcodeblock %}
 
 一个block指令和一个简单的指令有相同的结构，但是**不是以分号结尾，而是用一系列由大括号（{和}）包围的附加指令来结束**。如果一个block指令在大括号内可以有其他的指令，它就被称为一个context（上下文，例如：events，http，server和location）:
 
-{% codeblock lang:nginx %}
+{% codeblock lang:javascript %}
     http {
         server {
             #location / {
@@ -73,7 +74,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 #后面的部分是注释：
 
-{% codeblock lang:nginx %}
+{% codeblock lang:javascript %}
     # 这是一段注释
 {% endcodeblock %}
 
@@ -83,7 +84,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 你需要将静态网页和文件放到一个目录（例如/data/www），将图片等文件放到另一个目录（例如/data/images），然后在nginx.conf中进行配置。这需要在*http*模块下的*server*模块内新建两个*location*模块：
 
-{% codeblock lang:nginx %}
+{% codeblock lang:javascript %}
     http {
         server {
             location / {
@@ -98,7 +99,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 看起来很好理解吧~也可以直接把文件放到一块，直接location配置绝对路径：
 
-{% codeblock lang:nginx %}
+{% codeblock lang:javascript %}
     location / {
         root   F:\webapp\portal;
     }
@@ -108,7 +109,7 @@ Nginx在未配置监听端口的情况下默认监听80端口，因此，你可�
 
 怎么样？赶紧启动一下Nginx吧，你的静态网站已经可以在本地运行了！修改配置后重启Nginx的命令是：
 
-{% codeblock lang:nginx %}
+{% codeblock lang:javascript %}
     nginx -s reload
 {% endcodeblock %}
 
@@ -180,8 +181,3 @@ Nginx经常作为反向代理服务器来使用，这意味着Nginx服务器接�
 更多Nginx代理配置指令，尽在[ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)
 
 ## 参考文献
-
-***
-
-[Nginx官方网站](https://nginx.org/)
-[Nginx官方入门文档](https://nginx.org/en/docs/beginners_guide.html)

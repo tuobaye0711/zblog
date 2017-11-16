@@ -3,11 +3,14 @@ title: Nginx 配置指南
 date: 2017-11-11 10:50:50
 tags: Nginx
 description: Nginx是最初由Igor Sysoev编写的HTTP和反向代理服务器，邮件代理服务器和通用TCP/UDP代理服务器。很长时间以来，它一直在许多重负荷的俄罗斯网站上运行，包括Yandex，Mail.Ru，VK和Rambler。根据Netcraft，2017年10月，Nginx服务或代理了29.43％最繁忙的站点。下面是一些成功案例：Dropbox，Netflix，Wordpress.com，FastMail.FM。这篇文章可以帮你快速入门Nginx，了解Nginx的优势所在，并可以尝试搭建静态服务器和简单的反向代理服务器。
+picture: nginx.png
 ---
 
 ## 什么是Nginx？
 
 ***
+
+![Nginx](nginx.png)
 
 没有什么文档比直接从[Nginx官网]()来的更准确清晰了。
 

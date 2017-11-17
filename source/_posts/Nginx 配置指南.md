@@ -87,7 +87,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 你需要将静态网页和文件放到一个目录（例如/data/www），将图片等文件放到另一个目录（例如/data/images），然后在nginx.conf中进行配置。这需要在*http*模块下的*server*模块内新建两个*location*模块：
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     http {
         server {
             location / {
@@ -102,7 +102,7 @@ nginx包含由配置文件中指定的指令控制的模块。指令分为**简�
 
 看起来很好理解吧~也可以直接把文件放到一块，直接location配置绝对路径：
 
-{% codeblock lang:javascript %}
+{% codeblock lang:nginx %}
     location / {
         root   F:\webapp\portal;
     }

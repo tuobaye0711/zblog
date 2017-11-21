@@ -8,6 +8,8 @@ picture: zEditor.png
 
 ## 引子
 
+把[demo](http://tuobaye.com/demo/zEditor/index)放在显眼的位置
+
 ***
 
 富文本编辑器是我们在生活中非常常用到的编辑工具，现在有很多功能完备且强大的编辑器，比如[Quill Rich Text Editor](https://github.com/quilljs/quill)、[ueditor](http://ueditor.baidu.com/website/)等，都是很优秀的富文本编辑器。甚至说我们每个人都会用到的word，才是最优秀、国民度最高的富文本编辑器。

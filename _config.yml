@@ -85,3 +85,8 @@ server:
   port: 4001
   compress: true
   header: true
+
+# Social
+#social:
+#  github: tuobaye0711
+#  email: tuobaye0711@163.com

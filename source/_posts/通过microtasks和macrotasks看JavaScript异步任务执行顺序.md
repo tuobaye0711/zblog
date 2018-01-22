@@ -82,7 +82,7 @@ description: JS引擎是单线程的。这意味着在任何环境中，只有�
 
 >   Here “platform code” means engine, environment, and promise implementation code. In practice, this requirement ensures that onFulfilled and onRejected execute asynchronously, after the event loop turn in which then is called, and with a fresh stack. <span style="color:red">This can be implemented with either a “macro-task” mechanism such as setTimeout or setImmediate, or with a “micro-task” mechanism such as MutationObserver or process.nextTick. </span>Since the promise implementation is considered platform code, it may itself contain a task-scheduling queue or “trampoline” in which the handlers are called.
 
-这里提到了micro-task和macro-task这两个概念，并分别列举了两种情况：setTimeout和setImmediate属性macro-task，MutationObserver和process.nextTick属性micro-task。但并没有进一步的详述，于是我以此为线索进一步搜索资料，找到[stackoverflow上的一个问答](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)，终于让我的疑惑得到解决。
+这里提到了micro-task和macro-task这两个概念，并分别列举了两种情况：setTimeout和setImmediate属于macro-task，MutationObserver和process.nextTick属于micro-task。但并没有进一步的详述，于是我以此为线索进一步搜索资料，找到[stackoverflow上的一个问答](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)，终于让我的疑惑得到解决。
 
 macrotasks和microtasks的划分：
 

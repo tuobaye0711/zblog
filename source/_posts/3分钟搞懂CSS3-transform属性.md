@@ -20,7 +20,7 @@ description: transform是CSS3中非常有用的一个属性，今天我们就来
 
 接下来有更直观的，我手写了一个简单的transform体验器，自己尝试一下吧：
 
-[transform体验器](http://localhost:4001/demo/transform)
+[transform体验器](http://tuobaye.com/demo/transform)
 
 不知道你搞懂了吗？
 

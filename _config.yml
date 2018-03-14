@@ -90,6 +90,17 @@ server:
   header: true
 
 # Social
-#social:
-#  github: tuobaye0711
-#  email: tuobaye0711@163.com
+social:
+  github: tuobaye0711
+  email: tuobaye0711@163.com
+  rss: atom.xml
+
+# RSS订阅支持
+plugin:
+  - hexo-generator-feed
+
+# Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20

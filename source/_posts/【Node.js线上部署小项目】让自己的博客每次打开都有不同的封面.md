@@ -210,6 +210,8 @@ OK，搞定啦
 
 如果把url换成 http://tuobaye.duapp.com/wallpaper/random ，就可以每刷新一次都是新的封面了~帅气！
 
+PS. 现在我有自己的服务器了，已经不用BAE了。BAE基础版好像马上就要下线了（貌似太便宜了赚不到钱...）。如果想调用我的api，只需把url换成[http://api.tuobaye.com:8888](http://api.tuobaye.com:8888)即可~
+
 ## 6、小结
 
 ***

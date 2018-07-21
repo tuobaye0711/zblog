@@ -2,3 +2,4 @@
 /public
 .idea
 .vscode
+/.deploy_git

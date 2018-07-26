@@ -8,7 +8,7 @@ picture: zEditor.png
 
 ## 引子
 
-把[demo](http://tuobaye.com/demo/zEditor/index)放在显眼的位置
+把[demo](https://tuobaye.com/demo/zEditor/index)放在显眼的位置
 
 ***
 
@@ -94,7 +94,7 @@ picture: zEditor.png
 这是我们的预览图：
 ![zEditor](zEditor.png)
 
-大家可以访问[我的博客](http://tuobaye.com/demo/zEditor/index)尝试一下这个小小富文本编辑器，也希望能去我的[github项目](https://github.com/tuobaye0711/zEditor)上点颗star,谢谢啦~
+大家可以访问[我的博客](https://tuobaye.com/demo/zEditor/index)尝试一下这个小小富文本编辑器，也希望能去我的[github项目](https://github.com/tuobaye0711/zEditor)上点颗star,谢谢啦~
 
 顺道贴一个codepen的预览，有些网络可能加载不出来...
 <p data-height="744" data-theme-id="dark" data-slug-hash="LOZRaL" data-default-tab="html,result" data-user="tuobaye0711" data-embed-version="2" data-pen-title="zEditor" class="codepen">See the Pen <a href="https://codepen.io/tuobaye0711/pen/LOZRaL/">zEditor</a> by zhleven (<a href="https://codepen.io/tuobaye0711">@tuobaye0711</a>) on <a href="https://codepen.io">CodePen</a>.</p>

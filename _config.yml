@@ -85,7 +85,7 @@ deploy:
   # branch: master
   repository:
     github: git@github.com:tuobaye0711/tuobaye0711.github.io.git,master
-    coding: git@git.coding.net:zhleven/zhleven.git,master
+    # coding: git@git.coding.net:zhleven/zhleven.git,master
 
 server:
   port: 4001

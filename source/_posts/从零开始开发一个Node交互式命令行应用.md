@@ -183,7 +183,7 @@ page.on("load", async () => {
 
 ![cat](cat.jpg)
 
-图片下载的地方只写了主函数，更详细的代码可以去参见[github](https://github.com/tuobaye0711/image-spider).
+图片下载的地方只写了主函数，更详细的代码可以去参见[github](https://github.com/tuobaye0711/img-spd/blob/master/demo4/baidu.js).
 
 至此，我们用 Node 和 Puppeteer 开发出了一个最基本的图片爬虫工具。
 
@@ -348,3 +348,41 @@ package.json里面配置
 看着一整个文件夹的gakki，感觉满满的幸福要溢出来了
 
 ![gakki](gakki.png)
+
+最后用动图来展示一下：
+
+![img-spd](img-spd.gif)
+
+## 附录
+
+### 项目地址
+
+[项目地址](https://github.com/tuobaye0711/img-spd)
+
+## Install
+
+```shell
+npm install -g img-spd
+```
+
+### Usage
+
+```shell
+img-spd
+```
+
+or
+
+```shell
+Usage: img-spd [options]
+
+img-spd is a spider get images from image.baidu.com
+
+Options:
+  -v --version               output the version number
+  -k, --key [key]            input the image keywords to download
+  -i, --interval [interval]  input the operation interval(ms,default 200)
+  -n, --number [number]      input the operation interval(ms,default 200)
+  -m, --headless [headless]  choose whether the program is running in headless mode
+  -h, --help                 output usage information
+```

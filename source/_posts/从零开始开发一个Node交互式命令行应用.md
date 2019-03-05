@@ -359,7 +359,7 @@ package.json里面配置
 
 [项目地址](https://github.com/tuobaye0711/img-spd)
 
-## Install
+### Install
 
 ```shell
 npm install -g img-spd

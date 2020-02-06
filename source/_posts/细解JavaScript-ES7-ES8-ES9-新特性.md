@@ -3,7 +3,7 @@ title: 细解JavaScript ES7 ES8 ES9 新特性
 date: 2018-11-27 19:05:32
 tags: JavaScript
 description: ECMAScript的演化不会停止，但是我们完全没必要害怕。除了ES6这个史无前例的版本带来了海量的信息和知识点以外，之后每年一发的版本都仅仅带有少量的增量更新，一年更新的东西花半个小时就能搞懂了，完全没必要畏惧。本文将带您花大约一个小时左右的时间，迅速过一遍ES7,ES8,ES9的新特性。
-picture: es_16_17_18.png
+picture: es_16_17_18.webp
 ---
 
 ![es_16_17_18](es_16_17_18.png)
